@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Match Predictor</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+<body>
+
+<div class="container">
+    <h1>⚽ Football Match Predictor</h1>
+
+    <form action="/predict" method="post">
+
+            <select name="league" required>
+    <option value="" disabled selected>Select League</option>
+    <option value="EPL">Premier League</option>
+    <option value="LALIGA">La Liga</option>
+    <option value="SERIE_A">Serie A</option>
+    <option value="BUNDESLIGA">Bundesliga</option>
+    <option value="LIGUE_1">Ligue 1</option>
+            </select>
+
+
+        <input type="number" step="any" name="home_team_form" placeholder="Home team form">
+        <input type="number" step="any" name="away_team_form" placeholder="Away team form">
+
+        <input type="number" step="any" name="home_goals_scored_avg" placeholder="Home avg goals scored">
+        <input type="number" step="any" name="away_goals_scored_avg" placeholder="Away avg goals scored">
+
+        <input type="number" step="any" name="home_goals_conceded_avg" placeholder="Home avg goals conceded">
+        <input type="number" step="any" name="away_goals_conceded_avg" placeholder="Away avg goals conceded">
+
+        <input type="number" step="any" name="home_win_percentage" placeholder="Home win %">
+        <input type="number" step="any" name="away_win_percentage" placeholder="Away win %">
+
+
+
+        <button type="submit" id="predictBtn">
+    <span id="btnText">Predict</span>
+    <span id="loader" class="loader hidden"></span>
+        </button>
+
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        Prediction Result: <strong>{{ prediction }}</strong><br>
+        League: <strong>{{ selected_league }}</strong>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
